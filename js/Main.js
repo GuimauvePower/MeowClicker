@@ -1,10 +1,12 @@
 // GAME DATA
 
 let gameData = {
+    gameVersion: "0.0.1a",
     totalMeows: 0,
     meows: 0,
     meowsPerClick: 1,
     meowUpgrader1Lvl: 0,
+    newRandomVar: 7241,
 }
 
 function clearData(secretPassword) {
@@ -14,6 +16,10 @@ function clearData(secretPassword) {
     }
 }
 
+function saveGameNow() {
+    localStorage.setItem("meowClickerSave", JSON.stringify(gameData));
+    console.log("Game Data saved!\nExtra soon to be more precise!")
+}
 
 
 
@@ -28,9 +34,23 @@ const meowUpgrader1Button = document.querySelector("#meowUpgrader1");
 
 let saveGame = JSON.parse(localStorage.getItem("meowClickerSave"));
 if (saveGame !== null) {
-    gameData = saveGame;
-    console.log("Game Data loaded!")
-    updateDisplays();
+    if (saveGame.gameVersion === gameData.gameVersion) {
+        gameData = saveGame;
+        console.log("Game Data loaded with no issues!")
+        updateDisplays();
+    }
+    else {
+        console.log("OUTDATED SAVE\nwill try to update save to newer version (" + saveGame.gameVersion + " --> " + gameData.gameVersion + ")")
+        Object.keys(gameData).forEach(key => {
+            if (key !== "gameVersion") {
+                console.log("currently trying to update: " + key)
+                if (Object.prototype.hasOwnProperty.call(saveGame, key)) {
+                    gameData[key] = saveGame[key];
+                }
+                console.log(key + " is now equal to " + gameData[key])
+            }
+        });
+    }
 }
 
 let mainGameLoop = window.setInterval(e => {
