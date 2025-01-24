@@ -1,12 +1,13 @@
 // GAME DATA
 
 let gameData = {
-    gameVersion: "0.0.1a",
+    gameVersion: "0.0.2a",
     totalMeows: 0,
     meows: 0,
     meowsPerClick: 1,
+    ownedCat1: 0,
     meowUpgrader1Lvl: 0,
-    newRandomVar: 7241,
+    cat1Bought: 0,
 }
 
 function clearData(secretPassword) {
@@ -23,10 +24,17 @@ function saveGameNow() {
 
 
 
+// OTHER VARS
+
+let displayedMeows = 0;
+
+
+
 // VALUE DISPLAYS
 
 const meowCounter = document.querySelector("#meowCounter");
 const meowUpgrader1Button = document.querySelector("#meowUpgrader1");
+const buyCat1Button = document.querySelector("#buyCat1");
 
 
 
@@ -53,27 +61,48 @@ if (saveGame !== null) {
     }
 }
 
+// this repeats every second
 let mainGameLoop = window.setInterval(e => {
-    // this repeats every second
+    // give mps (meows per second)
+    let baseMPS = (gameData.ownedCat1) // + other sources
+    // let totalMPS = (baseMPS * (plusMult1 + plusMult2)) * multiplicativeMult1 etc
+
+    gameData.meows += baseMPS;
+
+    // Update all displays (in case it wasnt already done)
     updateDisplays();
 }, 1000)
 
+// Saves gameData every 30 sec
 let saveGameLoop = window.setInterval(e => {
-    // Saves gameData every 30 sec
     localStorage.setItem("meowClickerSave", JSON.stringify(gameData));
     console.log("Game Data saved!")
 }, 30000)
 
+let counterDisplayLoop = window.setInterval(e => {
+    if (displayedMeows != gameData.meows) {
+        let diff = (gameData.meows - displayedMeows) * .4;
+        if (diff >= 0) displayedMeows += Math.ceil(diff);
+        else displayedMeows += Math.floor(diff);
+        meowCounter.innerHTML = "<b>" + displayedMeows + "</b> meows meowed";
+    }
+}, 50)
+
 function updateDisplays() {
-    meowCounter.innerHTML = "<b>" + gameData.meows + "</b> meows meowed"
-    meowUpgrader1Button.innerHTML = "Meow stronger (+1) - <b>" + upgrader1Cost(gameData.meowUpgrader1Lvl) + " meows</b>"
+    meowUpgrader1Button.innerHTML = "Meow stronger (+1) - <b>" + meowUpgrader1Cost(gameData.meowUpgrader1Lvl) + " meows</b>"
+    buyCat1Button.innerHTML = "Buy 1 cat (+1 mps) - <b>" + cat1Cost(gameData.cat1Bought) + " meows</b>"
 }
+
 
 
 // SCALING FUNCTIONS
 
-function upgrader1Cost(n) {
-    return Math.ceil(Math.pow(1.4, n) + (4 * n)) + 9
+function meowUpgrader1Cost(n) {
+    return Math.ceil(10 * Math.pow(1.2, 0.5 * n) + n); // f1(n)
+}
+
+function cat1Cost(n) {
+    return Math.ceil(20 * Math.pow(1.125, 0.25 * n) + 2 * n); // f2(n)
 }
 
 
@@ -90,13 +119,27 @@ function meow() {
 
 function meowUpgrader1() {
 
-    const currentUpgradeCost = upgrader1Cost(gameData.meowUpgrader1Lvl);
+    const currentCost = meowUpgrader1Cost(gameData.meowUpgrader1Lvl);
 
-    if (gameData.meows >= currentUpgradeCost) {
-        gameData.meows -= currentUpgradeCost;
+    if (gameData.meows >= currentCost) {
+        gameData.meows -= currentCost;
 
         gameData.meowsPerClick++;
         gameData.meowUpgrader1Lvl++;
+    }
+
+    updateDisplays();
+}
+
+function buyCat1() {
+
+    const currentCost = cat1Cost(gameData.cat1Bought);
+
+    if (gameData.meows >= currentCost) {
+        gameData.meows -= currentCost;
+
+        gameData.ownedCat1++;
+        gameData.cat1Bought++;
     }
 
     updateDisplays();
