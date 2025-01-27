@@ -10,10 +10,20 @@
 </head>
 
 <body>
-    <button type="button" onclick="meow()">meow :3</button>
-    <p id="meowCounter"><b>0</b> meows meowed</p>
-    <button type="button" id="meowUpgrader1" onclick="meowUpgrader1()">Meow stronger (+1) - <b>10 meows</b></button>
-    <button type="button" id="buyCat1" onclick="buyCat1()">Buy 1 cat (+1 mps) - <b>20 meows</b></button>
+    <div id="interface">
+        <div id="left"></div>
+        <div id="main">
+            <p id="meowCounter"><b>0</b> meows meowed</p>
+            <div id="meowButton">
+                <div class="img"></div>
+            </div>
+        </div>
+        <div id="right">
+            <button type="button" id="meowUpgrader1" onclick="meowUpgrader1()">Meow stronger (+1) - <b>10 meows</b></button>
+            <button type="button" id="buyCat1" onclick="buyCat1()">Buy 1 cat (+1 mps) - <b>20 meows</b></button>
+        </div>
+    </div>
+    <div id="version"></div>
     <script src="js/Main.js"></script>
 </body>
 

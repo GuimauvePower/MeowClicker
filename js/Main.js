@@ -24,17 +24,30 @@ function saveGameNow() {
 
 
 
+
+
 // OTHER VARS
 
 let displayedMeows = 0;
 
 
 
-// VALUE DISPLAYS
+// VALUE DISPLAYS & BUTTONS
 
 const meowCounter = document.querySelector("#meowCounter");
 const meowUpgrader1Button = document.querySelector("#meowUpgrader1");
 const buyCat1Button = document.querySelector("#buyCat1");
+
+let meowButton = document.querySelector("#meowButton");
+
+
+
+// ADD EVENT LISTENERS
+
+meowButton.addEventListener("click", e => {
+    e.preventDefault();
+    meow();
+})
 
 
 
@@ -84,7 +97,7 @@ let counterDisplayLoop = window.setInterval(e => {
         let diff = (gameData.meows - displayedMeows) * .4;
         if (diff >= 0) displayedMeows += Math.ceil(diff);
         else displayedMeows += Math.floor(diff);
-        meowCounter.innerHTML = "<b>" + displayedMeows + "</b> meows meowed";
+        meowCounter.innerHTML = "<span>" + displayedMeows + "</span><br>meows meowed";
     }
 }, 50)
 
@@ -108,6 +121,11 @@ function cat1Cost(n) {
 
 
 // OTHER FUNCTIONS
+
+function load() {
+    let versionDisplay = document.querySelector("#version");
+    versionDisplay.textContent = "v"+gameData.gameVersion;
+}
 
 function meow() {
     gameData.meows += gameData.meowsPerClick;
@@ -146,4 +164,4 @@ function buyCat1() {
 }
 
 
-
+load();
