@@ -19,34 +19,43 @@ body {
 #main {
   background-color: #444;
   min-height: 100%;
+  min-width: 54rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-#meowCounter {
+#counter {
   position: absolute;
-  top: 16rem;
+  top: 12rem;
   font-size: 3rem;
   text-align: center;
-  color: #aaa;
+  color: #777;
   line-height: 2.5rem;
 }
-#meowCounter span {
+#counter span {
   font-size: 5rem;
   color: #fff;
+}
+#counter #mpsCounter {
+  font-size: 2rem;
+  text-align: center;
+  color: #aaa;
+  line-height: 4.5rem;
 }
 
 #meowButton {
   width: 48rem;
   height: 48rem;
+  background: none;
+  border: none;
 }
 #meowButton .img {
   transition: all 250ms ease;
-  background-image: url("../img/catstare.webp");
+  background-image: url("../img/catmeowmeow.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   width: 100%;
   height: 100%;
@@ -59,9 +68,88 @@ body {
   transform: scale(0.95);
 }
 
+#shop {
+  background-color: #1e1e1e;
+  min-width: 48rem;
+}
+#shop nav.shopNav {
+  background-color: #222;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+#shop nav.shopNav button {
+  font-family: "Tiny5", serif;
+  font-size: 2.5rem;
+  text-align: center;
+  padding: 1.5rem;
+  min-width: 12rem;
+}
+#shop nav.shopNav button.unlocked {
+  background-color: #333;
+  color: #ddd;
+  border: 0.25rem solid #888;
+}
+#shop nav.shopNav button:hover {
+  background-color: #3e3e3e;
+  color: #eee;
+  border: 0.25rem solid #aaa;
+}
+#shop nav.shopNav button:active {
+  background-color: #191919;
+  color: #999;
+  border: 0.25rem solid #666;
+}
+#shop nav.shopNav button.selected {
+  background-color: #555;
+  color: #fff;
+  border: 0.25rem solid #bcbcbc;
+}
+#shop nav.shopNav button.locked {
+  background-color: #0e0e0e;
+  color: #666;
+  border: 0.25rem solid #393939;
+}
+
+#shopMenu {
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+#shopMenu .item {
+  position: relative;
+  background-color: #0e0e0e;
+  border: 0.5rem solid white;
+  padding: 1rem;
+}
+#shopMenu .item h2 {
+  margin-bottom: 1rem;
+}
+#shopMenu .item .img {
+  position: absolute;
+  top: 1rem;
+  bottom: 1rem;
+  right: 1rem;
+  opacity: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 11rem;
+}
+
 html {
   font-family: "Tiny5", serif;
   overflow: hidden;
+}
+
+button {
+  background-color: black;
+  border: none;
+  font-family: "Tiny5", serif;
+  color: #eee;
+  text-align: start;
 }
 
 body {
@@ -73,7 +161,7 @@ body {
 
 #interface {
   display: grid;
-  grid-template-columns: 1fr 1.5fr 1fr;
+  grid-template-columns: 1fr 1fr 1.25fr;
   gap: 2rem;
   position: absolute;
   top: 0px;
@@ -90,6 +178,6 @@ body {
   color: #333;
 }
 
-#left, #right {
+#left {
   background-color: #222;
 }/*# sourceMappingURL=style.css.map */

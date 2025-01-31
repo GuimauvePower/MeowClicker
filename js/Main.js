@@ -24,8 +24,6 @@ function saveGameNow() {
 
 
 
-
-
 // OTHER VARS
 
 let displayedMeows = 0;
@@ -35,6 +33,7 @@ let displayedMeows = 0;
 // VALUE DISPLAYS & BUTTONS
 
 const meowCounter = document.querySelector("#meowCounter");
+const mpsCounter = document.querySelector("#mpsCounter");
 const meowUpgrader1Button = document.querySelector("#meowUpgrader1");
 const buyCat1Button = document.querySelector("#buyCat1");
 
@@ -53,38 +52,41 @@ meowButton.addEventListener("click", e => {
 
 // EXTRA IMPORTANT FUNCTIONS
 
-let saveGame = JSON.parse(localStorage.getItem("meowClickerSave"));
-if (saveGame !== null) {
-    if (saveGame.gameVersion === gameData.gameVersion) {
-        gameData = saveGame;
-        console.log("Game Data loaded with no issues!")
-        updateDisplays();
-    }
-    else {
-        console.log("OUTDATED SAVE\nwill try to update save to newer version (" + saveGame.gameVersion + " --> " + gameData.gameVersion + ")")
-        Object.keys(gameData).forEach(key => {
-            if (key !== "gameVersion") {
-                console.log("currently trying to update: " + key)
-                if (Object.prototype.hasOwnProperty.call(saveGame, key)) {
-                    gameData[key] = saveGame[key];
-                }
-                console.log(key + " is now equal to " + gameData[key])
-            }
-        });
-    }
-}
+// let saveGame = JSON.parse(localStorage.getItem("meowClickerSave"));
+// if (saveGame !== null) {
+//     if (saveGame.gameVersion === gameData.gameVersion) {
+//         gameData = saveGame;
+//         console.log("Game Data loaded with no issues!")
+//         updateDisplays();
+//     }
+//     else {
+//         console.log("OUTDATED SAVE\nwill try to update save to newer version (" + saveGame.gameVersion + " --> " + gameData.gameVersion + ")")
+//         Object.keys(gameData).forEach(key => {
+//             if (key !== "gameVersion") {
+//                 console.log("currently trying to update: " + key)
+//                 if (Object.prototype.hasOwnProperty.call(saveGame, key)) {
+//                     gameData[key] = saveGame[key];
+//                 }
+//                 console.log(key + " is now equal to " + gameData[key])
+//             }
+//         });
+//     }
+// }
 
-// this repeats every second
+// this repeats 50 times every second
 let mainGameLoop = window.setInterval(e => {
     // give mps (meows per second)
     let baseMPS = (gameData.ownedCat1) // + other sources
+
+    // EXAMPLE:
     // let totalMPS = (baseMPS * (plusMult1 + plusMult2)) * multiplicativeMult1 etc
 
-    gameData.meows += baseMPS;
+    gameData.meows += baseMPS / 50; // divided by 50 since its every 20ms
 
     // Update all displays (in case it wasnt already done)
+    mpsCounter.innerText = "(+" + baseMPS + " mps)";
     updateDisplays();
-}, 1000)
+}, 20) // good value: 20
 
 // Saves gameData every 30 sec
 let saveGameLoop = window.setInterval(e => {
@@ -94,10 +96,14 @@ let saveGameLoop = window.setInterval(e => {
 
 let counterDisplayLoop = window.setInterval(e => {
     if (displayedMeows != gameData.meows) {
-        let diff = (gameData.meows - displayedMeows) * .4;
-        if (diff >= 0) displayedMeows += Math.ceil(diff);
-        else displayedMeows += Math.floor(diff);
-        meowCounter.innerHTML = "<span>" + displayedMeows + "</span><br>meows meowed";
+        let diff = (Math.floor(gameData.meows) - displayedMeows) * .4;
+
+        if (diff >= 0)
+            displayedMeows += Math.ceil(diff);
+        else
+            displayedMeows += Math.floor(diff);
+
+        meowCounter.innerHTML = displayedMeows;
     }
 }, 50)
 
@@ -111,11 +117,11 @@ function updateDisplays() {
 // SCALING FUNCTIONS
 
 function meowUpgrader1Cost(n) {
-    return Math.ceil(10 * Math.pow(1.2, 0.5 * n) + n); // f1(n)
+    return Math.ceil(20 * Math.pow(1.25, 0.9 * n) + 1.5 * n); // f1(n)
 }
 
 function cat1Cost(n) {
-    return Math.ceil(20 * Math.pow(1.125, 0.25 * n) + 2 * n); // f2(n)
+    return Math.ceil(30 * Math.pow(1.25, 0.75 * n) + 2.5 * n); // f2(n)
 }
 
 
@@ -124,7 +130,7 @@ function cat1Cost(n) {
 
 function load() {
     let versionDisplay = document.querySelector("#version");
-    versionDisplay.textContent = "v"+gameData.gameVersion;
+    versionDisplay.textContent = "v" + gameData.gameVersion;
 }
 
 function meow() {

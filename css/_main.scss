@@ -1,6 +1,7 @@
 #main {
     background-color: #444;
     min-height: 100%;
+    min-width: 54rem;
 
     display: flex;
     flex-direction: column;
@@ -8,31 +9,40 @@
     justify-content: center;
 }
 
-#meowCounter {
+#counter {
     position: absolute;
-    top: 16rem;
+    top: 12rem;
     font-size: 3rem;
     text-align: center;
-    color: #aaa;
+    color: #777;
     line-height: 2.5rem;
-
+    
     span {
         font-size: 5rem;
         color: #fff;
+    }
+    
+    #mpsCounter {
+        font-size: 2rem;
+        text-align: center;
+        color: #aaa;
+        line-height: 4.5rem;
     }
 }
 
 #meowButton {
     width: 48rem;
     height: 48rem;
+    background: none;
+    border: none;
 
     .img {
         transition: all 250ms ease;
 
         // background-image: url("../img/placeholder-square.jpg");
-        background-image: url("../img/catstare.webp");
+        background-image: url("../img/catmeowmeow.png");
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         background-position: center;
 
         width: 100%;

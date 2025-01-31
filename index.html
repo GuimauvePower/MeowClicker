@@ -11,20 +11,54 @@
 
 <body>
     <div id="interface">
-        <div id="left"></div>
-        <div id="main">
-            <p id="meowCounter"><b>0</b> meows meowed</p>
-            <div id="meowButton">
+        <section id="left">
+            <!-- stuff goes here -->
+            <button type="button" id="meowUpgrader1" onclick="meowUpgrader1()">Meow stronger (+1)</button>
+            <button type="button" id="buyCat1" onclick="buyCat1()">Buy 1 cat (+1 mps)</button>
+        </section>
+        <section id="main">
+            <p id="counter">
+                <span id="mpsCounter">(+1 mps)</span>
+                <br>
+                <span id="meowCounter">0</span>
+                <br>
+                meows meowed
+            </p>
+            <button id="meowButton">
                 <div class="img"></div>
-            </div>
-        </div>
-        <div id="right">
-            <button type="button" id="meowUpgrader1" onclick="meowUpgrader1()">Meow stronger (+1) - <b>10 meows</b></button>
-            <button type="button" id="buyCat1" onclick="buyCat1()">Buy 1 cat (+1 mps) - <b>20 meows</b></button>
-        </div>
+            </button>
+        </section>
+        <section id="shop">
+            <!-- shop goes here -->
+            <nav class="shopNav">
+                <button id="buildingsTab" class="unlocked">????????</button>
+                <button id="upgradesTab" class="unlocked">????????</button>
+                <button class="locked">????????</button>
+                <button class="locked">????????</button>
+            </nav>
+            <menu id="shopMenu">
+                <button class="item">
+                    <h2 class="iName">el gato</h2>
+                    <p class="iCost">100 meow</p>
+                    <p class="iDesc">really cute kitty car that we all love</p>
+                    <p class="iEffect">+1 mps</p>
+                    <p class="iCount">0</p>
+                    <div class="img" style="background-image: url('../img/catstare.webp');"></div>
+                </button>
+                <div class="item">
+                    <h2 class="iName">Item Name</h2>
+                    <p class="iCost">Price</p>
+                    <p class="iDesc">Description of the item</p>
+                    <p class="iEffect">Effect</p>
+                    <p class="iCount">Count</p>
+                    <div class="img"></div>
+                </div>
+            </menu>
+        </section>
     </div>
     <div id="version"></div>
     <script src="js/Main.js"></script>
+    <script src="js/ShopMenu.js"></script>
 </body>
 
 </html>

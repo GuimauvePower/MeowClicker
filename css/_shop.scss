@@ -1,0 +1,89 @@
+#shop {
+    background-color: #1e1e1e;
+    min-width: 48rem;
+
+    nav.shopNav {
+        background-color: #222;
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+
+        button {
+            font-family: $txt-font;
+            font-size: 2.5rem;
+            text-align: center;
+
+            padding: 1.5rem;
+            min-width: 12rem;
+
+            &.unlocked {
+                background-color: #333;
+                color: #ddd;
+                border: 0.25rem solid #888;
+
+            }
+
+            &:hover {
+                background-color: #3e3e3e;
+                color: #eee;
+                border: 0.25rem solid #aaa;
+            }
+
+            &:active {
+                background-color: #191919;
+                color: #999;
+                border: 0.25rem solid #666;
+            }
+
+            &.selected {
+                background-color: #555;
+                color: #fff;
+                border: 0.25rem solid #bcbcbc;
+            }
+
+            &.locked {
+                background-color: #0e0e0e;
+                color: #666;
+                border: 0.25rem solid #393939;
+            }
+        }
+    }
+}
+
+#shopMenu {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .item {
+        position: relative;
+
+        background-color: #0e0e0e;
+        border: 0.5rem solid white;
+        padding: 1rem;
+
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        .img {
+            position: absolute;
+            top: 1rem;
+            bottom: 1rem;
+            right: 1rem;
+            // left: 80%;
+
+            // background-color: pink;
+            // background-image: url("../img/catstare.webp");
+            opacity: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+
+            width: 11rem;
+        }
+    }
+}
