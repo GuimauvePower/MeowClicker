@@ -1,7 +1,7 @@
 // GAME DATA
 
 let gameData = {
-    gameVersion: "0.0.2a",
+    gameVersion: "0.0.3a",
     totalMeows: 0,
     meows: 0,
     meowsPerClick: 1,
@@ -52,26 +52,26 @@ meowButton.addEventListener("click", e => {
 
 // EXTRA IMPORTANT FUNCTIONS
 
-// let saveGame = JSON.parse(localStorage.getItem("meowClickerSave"));
-// if (saveGame !== null) {
-//     if (saveGame.gameVersion === gameData.gameVersion) {
-//         gameData = saveGame;
-//         console.log("Game Data loaded with no issues!")
-//         updateDisplays();
-//     }
-//     else {
-//         console.log("OUTDATED SAVE\nwill try to update save to newer version (" + saveGame.gameVersion + " --> " + gameData.gameVersion + ")")
-//         Object.keys(gameData).forEach(key => {
-//             if (key !== "gameVersion") {
-//                 console.log("currently trying to update: " + key)
-//                 if (Object.prototype.hasOwnProperty.call(saveGame, key)) {
-//                     gameData[key] = saveGame[key];
-//                 }
-//                 console.log(key + " is now equal to " + gameData[key])
-//             }
-//         });
-//     }
-// }
+let saveGame = JSON.parse(localStorage.getItem("meowClickerSave"));
+if (saveGame !== null) {
+    if (saveGame.gameVersion === gameData.gameVersion) {
+        gameData = saveGame;
+        console.log("Game Data loaded with no issues!")
+        updateDisplays();
+    }
+    else {
+        console.log("OUTDATED SAVE\nwill try to update save to newer version (" + saveGame.gameVersion + " --> " + gameData.gameVersion + ")")
+        Object.keys(gameData).forEach(key => {
+            if (key !== "gameVersion") {
+                console.log("currently trying to update: " + key)
+                if (Object.prototype.hasOwnProperty.call(saveGame, key)) {
+                    gameData[key] = saveGame[key];
+                }
+                console.log(key + " is now equal to " + gameData[key])
+            }
+        });
+    }
+}
 
 // this repeats 50 times every second
 let mainGameLoop = window.setInterval(e => {
