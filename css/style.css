@@ -19,7 +19,7 @@ body {
 #main {
   background-color: #444;
   min-height: 100%;
-  min-width: 54rem;
+  min-width: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,7 +28,7 @@ body {
 
 #counter {
   position: absolute;
-  top: 12rem;
+  top: 12.5%;
   font-size: 3rem;
   text-align: center;
   color: #777;
@@ -46,8 +46,8 @@ body {
 }
 
 #meowButton {
-  width: 48rem;
-  height: 48rem;
+  width: 80%;
+  aspect-ratio: 1;
   background: none;
   border: none;
 }
@@ -57,6 +57,7 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  image-rendering: pixelated;
   width: 100%;
   height: 100%;
 }
@@ -70,73 +71,137 @@ body {
 
 #shop {
   background-color: #1e1e1e;
-  min-width: 48rem;
+  min-width: 540px;
 }
 #shop nav.shopNav {
-  background-color: #222;
+  background-color: #111;
   width: 100%;
   display: flex;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-top: 1rem;
+  padding: 1rem 0;
 }
 #shop nav.shopNav button {
   font-family: "Tiny5", serif;
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   text-align: center;
   padding: 1.5rem;
   min-width: 12rem;
+  border: 0.25rem solid;
 }
 #shop nav.shopNav button.unlocked {
-  background-color: #333;
+  background-color: #222;
   color: #ddd;
-  border: 0.25rem solid #888;
+  border-color: #888;
 }
 #shop nav.shopNav button:hover {
   background-color: #3e3e3e;
   color: #eee;
-  border: 0.25rem solid #aaa;
+  border-color: #aaa;
 }
 #shop nav.shopNav button:active {
   background-color: #191919;
   color: #999;
-  border: 0.25rem solid #666;
+  border-color: #666;
 }
 #shop nav.shopNav button.selected {
   background-color: #555;
   color: #fff;
-  border: 0.25rem solid #bcbcbc;
+  border-color: #bcbcbc;
 }
 #shop nav.shopNav button.locked {
   background-color: #0e0e0e;
   color: #666;
-  border: 0.25rem solid #393939;
+  border-color: #393939;
 }
 
 #shopMenu {
-  padding: 4rem 2rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 90vh;
+  scrollbar-width: thin;
+  scrollbar-color: #bbb #111;
+}
+#shopMenu .tab1 {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-#shopMenu .item {
+#shopMenu .tab1 .item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem;
+  min-height: 16rem;
   position: relative;
-  background-color: #0e0e0e;
-  border: 0.5rem solid white;
+  border: 0.5rem solid;
   padding: 1rem;
 }
-#shopMenu .item h2 {
+#shopMenu .tab1 .item div {
+  position: relative;
+  width: 100%;
+  min-height: 120px;
+  font-size: 2rem;
+}
+#shopMenu .tab1 .item div .iName {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
 }
-#shopMenu .item .img {
+#shopMenu .tab1 .item div .iDesc {
+  margin-top: 4rem;
+  margin-bottom: 3.5rem;
+}
+#shopMenu .tab1 .item div .iEffect {
   position: absolute;
-  top: 1rem;
-  bottom: 1rem;
-  right: 1rem;
+  bottom: 0;
+  left: 0;
+}
+#shopMenu .tab1 .item div .iCost {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2.5rem;
+  text-align: end;
+}
+#shopMenu .tab1 .item div .iCount {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: end;
+}
+#shopMenu .tab1 .item .img {
+  width: 10rem;
+  aspect-ratio: 1;
   opacity: 50%;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 11rem;
+  filter: saturate(0%);
+}
+#shopMenu .tab1 .item.unlocked {
+  background-color: #222;
+  color: #ddd;
+  border-color: #888;
+}
+#shopMenu .tab1 .item:hover {
+  background-color: #3e3e3e;
+  color: #eee;
+  border-color: #aaa;
+}
+#shopMenu .tab1 .item:active {
+  background-color: #191919;
+  color: #999;
+  border-color: #666;
+}
+#shopMenu .tab1 .item.locked {
+  background-color: #0e0e0e;
+  color: #666;
+  border-color: #393939;
 }
 
 html {

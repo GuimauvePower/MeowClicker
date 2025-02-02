@@ -12,9 +12,7 @@
 <body>
     <div id="interface">
         <section id="left">
-            <!-- stuff goes here -->
-            <button type="button" id="meowUpgrader1" onclick="meowUpgrader1()">Meow stronger (+1)</button>
-            <button type="button" id="buyCat1" onclick="buyCat1()">Buy 1 cat (+1 mps)</button>
+            <!-- stuff goes here idrk what -->
         </section>
         <section id="main">
             <p id="counter">
@@ -31,27 +29,63 @@
         <section id="shop">
             <!-- shop goes here -->
             <nav class="shopNav">
-                <button id="buildingsTab" class="unlocked">????????</button>
-                <button id="upgradesTab" class="unlocked">????????</button>
+                <button id="buildingsTab" class="unlocked">Upgrades idk</button>
+                <button id="upgradesTab" class="locked">????????</button>
                 <button class="locked">????????</button>
                 <button class="locked">????????</button>
             </nav>
             <menu id="shopMenu">
-                <button class="item">
-                    <h2 class="iName">el gato</h2>
-                    <p class="iCost">100 meow</p>
-                    <p class="iDesc">really cute kitty car that we all love</p>
-                    <p class="iEffect">+1 mps</p>
-                    <p class="iCount">0</p>
-                    <div class="img" style="background-image: url('../img/catstare.webp');"></div>
-                </button>
-                <div class="item">
-                    <h2 class="iName">Item Name</h2>
-                    <p class="iCost">Price</p>
-                    <p class="iDesc">Description of the item</p>
-                    <p class="iEffect">Effect</p>
-                    <p class="iCount">Count</p>
-                    <div class="img"></div>
+                <div class="tab1">
+                    <button id="meowUpgrader1" onclick="meowUpgrader1()" class="item unlocked">
+                        <div>
+                            <p class="iName">Stronger vocal cords</p>
+                            <p class="iDesc">Train your vocal cords so that you can meow louder than ever!</p>
+                            <p class="iEffect">+1 mpc</p>
+                            <p class="iCost">??? meows</p>
+                            <p class="iCount">0</p>
+                        </div>
+                        <div class="img" style="background-image: url(img/placeholder-square.jpg);"></div>
+                    </button>
+                    <button id="buyCat1" onclick="buyCat1()" class="item unlocked">
+                        <div>
+                            <p class="iName">Cat</p>
+                            <p class="iDesc">Your average cat who just loves meowing. <br> Very cute :3</p>
+                            <p class="iEffect">+1 mps</p>
+                            <p class="iCost">??? meows</p>
+                            <p class="iCount">0</p>
+                        </div>
+                        <div class="img" style="background-image: url(img/placeholder-square.jpg);"></div>
+                    </button>
+                    <button id="buyCat2" onclick="buyCat2()" class="item unlocked">
+                        <div>
+                            <p class="iName">Hungry cat</p>
+                            <p class="iDesc">This is another average cat, but this one is very much very hungry. And it intends to make that very clear. <br>(Before you ask - yes it's fed)</p>
+                            <p class="iEffect">+5 mps</p>
+                            <p class="iCost">??? meows</p>
+                            <p class="iCount">0</p>
+                        </div>
+                        <div class="img" style="background-image: url('img/placeholder-square.jpg');"></div>
+                    </button>
+                    <div class="item locked">
+                        <div>
+                            <h2 class="iName">??????</h2>
+                            <p class="iCost">??? meows</p>
+                            <p class="iDesc">???</p>
+                            <p class="iEffect">???</p>
+                            <p class="iCount">0</p>
+                        </div>
+                        <div class="img" style="background-image: url(img/placeholder-square.jpg);"></div>
+                    </div>
+                    <div class="item locked">
+                        <div>
+                            <h2 class="iName">??????</h2>
+                            <p class="iCost">??? meows</p>
+                            <p class="iDesc">???</p>
+                            <p class="iEffect">???</p>
+                            <p class="iCount">0</p>
+                        </div>
+                        <div class="img" style="background-image: url(img/placeholder-square.jpg);"></div>
+                    </div>
                 </div>
             </menu>
         </section>

@@ -1,13 +1,15 @@
 // GAME DATA
 
 let gameData = {
-    gameVersion: "0.0.3a",
+    gameVersion: "0.0.4a",
     totalMeows: 0,
     meows: 0,
     meowsPerClick: 1,
     ownedCat1: 0,
+    ownedCat2: 0,
     meowUpgrader1Lvl: 0,
     cat1Bought: 0,
+    cat2Bought: 0,
 }
 
 function clearData(secretPassword) {
@@ -36,6 +38,7 @@ const meowCounter = document.querySelector("#meowCounter");
 const mpsCounter = document.querySelector("#mpsCounter");
 const meowUpgrader1Button = document.querySelector("#meowUpgrader1");
 const buyCat1Button = document.querySelector("#buyCat1");
+const buyCat2Button = document.querySelector("#buyCat2");
 
 let meowButton = document.querySelector("#meowButton");
 
@@ -76,7 +79,7 @@ if (saveGame !== null) {
 // this repeats 50 times every second
 let mainGameLoop = window.setInterval(e => {
     // give mps (meows per second)
-    let baseMPS = (gameData.ownedCat1) // + other sources
+    let baseMPS = (gameData.ownedCat1 * 1) + (gameData.ownedCat2 * 5) // + other sources
 
     // EXAMPLE:
     // let totalMPS = (baseMPS * (plusMult1 + plusMult2)) * multiplicativeMult1 etc
@@ -108,10 +111,40 @@ let counterDisplayLoop = window.setInterval(e => {
 }, 50)
 
 function updateDisplays() {
-    meowUpgrader1Button.innerHTML = "Meow stronger (+1) - <b>" + meowUpgrader1Cost(gameData.meowUpgrader1Lvl) + " meows</b>"
-    buyCat1Button.innerHTML = "Buy 1 cat (+1 mps) - <b>" + cat1Cost(gameData.cat1Bought) + " meows</b>"
+    updateButton(meowUpgrader1Button, meowUpgrader1Cost(gameData.meowUpgrader1Lvl), gameData.meowUpgrader1Lvl);
+    updateButton(buyCat1Button, cat1Cost(gameData.cat1Bought), gameData.cat1Bought);
+    updateButton(buyCat2Button, cat2Cost(gameData.cat2Bought), gameData.cat2Bought);
+
 }
 
+function updateButton(button, price, count) {
+    let buttonChildren = button.children[0].children;
+    let costDisplay, countDisplay;
+
+    // Price and count:
+    for (let i = 0; i < buttonChildren.length; i++) {
+        let child = buttonChildren[i];
+        let childClasses = child.classList.value;
+
+        if (childClasses === "iCost") {
+            costDisplay = child;
+        }
+        else if (childClasses === "iCount") {
+            countDisplay = child;
+        }
+    }
+    costDisplay.textContent = price + " meows";
+    countDisplay.textContent = count;
+
+    // Classes:
+    buttonClassList = button.classList.value;
+    if (gameData.meows >= price) {
+        button.classList.value = "item unlocked";
+    }
+    else {
+        button.classList.value = "item locked";
+    }
+}
 
 
 // SCALING FUNCTIONS
@@ -122,6 +155,10 @@ function meowUpgrader1Cost(n) {
 
 function cat1Cost(n) {
     return Math.ceil(30 * Math.pow(1.25, 0.75 * n) + 2.5 * n); // f2(n)
+}
+
+function cat2Cost(n) {
+    return Math.floor(500 * Math.pow(1.275, 0.8 * n) + Math.pow(5 * n, 0.2 * n)) - 1; // f3(n)
 }
 
 
@@ -168,6 +205,35 @@ function buyCat1() {
 
     updateDisplays();
 }
+
+function buyCat2() {
+
+    const currentCost = cat2Cost(gameData.cat2Bought);
+
+    if (gameData.meows >= currentCost) {
+        gameData.meows -= currentCost;
+
+        gameData.ownedCat2++;
+        gameData.cat2Bought++;
+    }
+
+    updateDisplays();
+}
+
+// TODO: MAKE A RE-USABLE FUNCTION FOR ALL UPGRADES FROM TAB1 IN SHOP
+// 
+// function buyUpgrade() {
+//     const currentCost = cat1Cost(gameData.cat1Bought);
+
+//     if (gameData.meows >= currentCost) {
+//         gameData.meows -= currentCost;
+
+//         gameData.ownedCat1++;
+//         gameData.cat1Bought++;
+//     }
+
+//     updateDisplays();
+// }
 
 
 load();

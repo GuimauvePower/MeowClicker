@@ -1,89 +1,192 @@
+$bgColBase: #222;
+$txtColBase: #ddd;
+$borderColBase: #888;
+
+$bgColHover: #3e3e3e;
+$txtColHover: #eee;
+$borderColHover: #aaa;
+
+$bgColActive: #191919;
+$txtColActive: #999;
+$borderColActive: #666;
+
+$bgColSelected: #555;
+$txtColSelected: #fff;
+$borderColSelected: #bcbcbc;
+
+$bgColLocked: #0e0e0e;
+$txtColLocked: #666;
+$borderColLocked: #393939;
+
+
+
 #shop {
     background-color: #1e1e1e;
-    min-width: 48rem;
+    min-width: 540px;
 
     nav.shopNav {
-        background-color: #222;
+        background-color: #111;
         width: 100%;
 
         display: flex;
         justify-content: space-between;
         gap: 0.5rem;
 
+        margin-top: 1rem;
+        padding: 1rem 0;
+
         button {
             font-family: $txt-font;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             text-align: center;
 
             padding: 1.5rem;
             min-width: 12rem;
 
-            &.unlocked {
-                background-color: #333;
-                color: #ddd;
-                border: 0.25rem solid #888;
+            border: 0.25rem solid;
 
+            &.unlocked {
+                background-color: $bgColBase;
+                color: $txtColBase;
+                border-color: $borderColBase;
             }
 
             &:hover {
-                background-color: #3e3e3e;
-                color: #eee;
-                border: 0.25rem solid #aaa;
+                background-color: $bgColHover;
+                color: $txtColHover;
+                border-color: $borderColHover;
             }
 
             &:active {
-                background-color: #191919;
-                color: #999;
-                border: 0.25rem solid #666;
+                background-color: $bgColActive;
+                color: $txtColActive;
+                border-color: $borderColActive;
             }
 
             &.selected {
-                background-color: #555;
-                color: #fff;
-                border: 0.25rem solid #bcbcbc;
+                background-color: $bgColSelected;
+                color: $txtColSelected;
+                border-color: $borderColSelected;
             }
 
             &.locked {
-                background-color: #0e0e0e;
-                color: #666;
-                border: 0.25rem solid #393939;
+                background-color: $bgColLocked;
+                color: $txtColLocked;
+                border-color: $borderColLocked;
             }
         }
     }
 }
 
 #shopMenu {
-    padding: 4rem 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 90vh;
 
-    .item {
-        position: relative;
+    scrollbar-width: thin;
+    scrollbar-color: #bbb #111;
 
-        background-color: #0e0e0e;
-        border: 0.5rem solid white;
-        padding: 1rem;
+    .tab1 {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    
+        .item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2.5rem;
+            min-height: 16rem;
+    
+            position: relative;
+    
+            border: 0.5rem solid;
+            padding: 1rem;
+    
+            div {
+                position: relative;
+                width: 100%;
+                min-height: 120px;
+                font-size: 2rem;
+                
+                
+                .iName {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
 
-        h2 {
-            margin-bottom: 1rem;
-        }
+                    font-size: 2.5rem;
+                    margin-bottom: 1rem;
+                }
+    
+                .iDesc {
+                    margin-top: 4rem;
+                    margin-bottom: 3.5rem;
+                }
+    
+                .iEffect {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                }
+    
+                .iCost {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+    
+                    font-size: 2.5rem;
+                    text-align: end;
+                }
+    
+                .iCount {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+    
+                    text-align: end;
+                }
+            }
+    
+            .img {
+                width: 10rem;
+                aspect-ratio: 1;
+    
+                // background-color: gray;
+                // background-image: url("../img/catstare.webp");
+                opacity: 50%;
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
 
-        .img {
-            position: absolute;
-            top: 1rem;
-            bottom: 1rem;
-            right: 1rem;
-            // left: 80%;
-
-            // background-color: pink;
-            // background-image: url("../img/catstare.webp");
-            opacity: 50%;
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-
-            width: 11rem;
+                // TEMP (probably)
+                filter: saturate(0%);
+            }
+    
+            &.unlocked {
+                background-color: $bgColBase;
+                color: $txtColBase;
+                border-color: $borderColBase;
+            }
+    
+            &:hover {
+                background-color: $bgColHover;
+                color: $txtColHover;
+                border-color: $borderColHover;
+            }
+    
+            &:active {
+                background-color: $bgColActive;
+                color: $txtColActive;
+                border-color: $borderColActive;
+            }
+    
+            &.locked {
+                background-color: $bgColLocked;
+                color: $txtColLocked;
+                border-color: $borderColLocked;
+            }
         }
     }
 }
